@@ -18,15 +18,16 @@ import org.apache.pdfbox.text.PDFTextStripper;
  */
 public class PdfToText {
     
-    public static String getText(File pdfFile) throws IOException {
-        PDDocument doc = PDDocument.load(pdfFile);
+    public static String getText(File file) throws IOException {
+        PDDocument doc = PDDocument.load(file);
         String cleanFundingText = "";
         PDFTextStripper stripper = new PDFTextStripper();
         
         stripper.setPageStart("PAGE START");
         String rawText = stripper.getText(doc);
-        
-        Pattern p = Pattern.compile("((?:Funding|Acknowledg(e)?ments|Co.+\\s[iI]nterests)(?:[\\r\\n]+.*?)+\\.)(?:[\\r\\n]+.*?[^\\.][\\r\\n]+)");
+        doc.close();
+
+        Pattern p = Pattern.compile("((?:Funding|Acknowledg(e)?ments|[cC]onflict.+\\s[iI]nterests)(?:[\\r\\n]+.*?)+\\.)(?:[\\r\\n]+.*?[^\\.][\\r\\n]+)");
         Matcher m = p.matcher(rawText);
         while(m.find()){
             String fundingText = m.group(1);
@@ -41,7 +42,7 @@ public class PdfToText {
                     }
                 }
             }
-            cleanFundingText = cleanFundingText + ";";
+            cleanFundingText = cleanFundingText + " ";
         }
         return cleanFundingText;
     }
