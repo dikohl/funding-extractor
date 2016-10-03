@@ -24,13 +24,14 @@ public class PdfToText {
         PDFTextStripper stripper = new PDFTextStripper();
         
         stripper.setPageStart("PAGE START");
-        String rawText = stripper.getText(doc);
+        String rawText = stripper.getText(doc).replaceAll("[\\p{Cc}\\p{Cf}\\p{Co}\\p{Cn}]","\n");
         doc.close();
 
-        Pattern p = Pattern.compile("((?:Funding|Acknowledg(e)?ments|[cC]onflict.+\\s[iI]nterests)(?:[\\r\\n]+.*?)+\\.)(?:[\\r\\n]+.*?[^\\.][\\r\\n]+)");
+        Pattern p = Pattern.compile("((?:Funding|Acknowledg(e)?ment(s)?|[cC]onflict.+\\s[iI]nterests)(?:[\\r\\n]+.*?)+\\.)(?:[\\r\\n]+.*?[^\\.][\\r\\n]+)");
         Matcher m = p.matcher(rawText);
         while(m.find()){
             String fundingText = m.group(1);
+            System.out.print(fundingText);
             String[] lines = fundingText.split("[\\r\\n]");
             for(String line : lines){
                 if(!line.startsWith(" ") && !line.startsWith("PAGE START")){

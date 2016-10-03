@@ -2,3 +2,7 @@
 *.pdf
 
 *.tsv
+
+grobid/
+
+grobid.log

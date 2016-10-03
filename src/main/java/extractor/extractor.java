@@ -1,9 +1,10 @@
 
 
+import PdfToMetadata.PdfToMetadata;
 import java.io.IOException;
 import extractor.pdftotext.PdfToText;
 import extractor.texttoentities.TextToEntities;
-import extractor.texttoentities.TextToFile;
+import extractor.texttoentities.TextToTrainingSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,16 +31,16 @@ public class extractor {
         try(Stream<Path> paths = Files.walk(Paths.get("inputs/"))) {
             paths.forEach(filePath -> {
                 if (Files.isRegularFile(filePath) && filePath.toString().endsWith(".pdf")) {
-                    try {
-                        System.out.println(filePath);
-                        String text = "";
-                        text = PdfToText.getText(filePath.toFile());
-                        List<String> entities = TextToEntities.getEntities(text);
-                        TextToFile.addToTrainingData(text, entities);
+                    System.out.println(filePath.toString());
+                    PdfToMetadata.getMetadata(filePath.toString());
+                    /*try {
+                        String text = PdfToText.getText(filePath.toFile());
+                        List<String> nerEntities = TextToEntities.getNerEntities(text);
+                        List<String> regexEntities = TextToEntities.getRegexEntities(text);
+                        //TextToTrainingSet.addToTrainingData(text, entities);
                     } catch (IOException ex) {
                         System.out.print("FilePath: "+ex);
-                    }
-
+                    }*/
                 }
             });
         } catch (IOException ex) {
