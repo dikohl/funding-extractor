@@ -1,0 +1,8 @@
+<ORGANIZATION>Salus Mundi Foundation</ORGANIZATION>
+<ORGANIZATION>University of California</ORGANIZATION>
+<LOCATION>Berkeley</LOCATION>
+<ORGANIZATION>University of California</ORGANIZATION>
+<LOCATION>San Diego</LOCATION>
+<PERSON>Daniel C. Hallin</PERSON>
+<ORGANIZATION>Center for Advanced Study in the Behavioral Sciences</ORGANIZATION>
+<ORGANIZATION>Stanford University</ORGANIZATION>

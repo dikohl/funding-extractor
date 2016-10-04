@@ -27,8 +27,8 @@ public class TextToEntities {
         System.out.println("Regular Expression Results:");
         while(m.find()){
             if(!(m.group().startsWith("Acknowled")|| m.group().startsWith("Fund"))){
-                entities.add(m.group());
-                System.out.println("<Entity>"+m.group()+"</Entity>");
+                entities.add("<ENTITY>"+m.group()+"</ENTITY>");
+                System.out.println("<ENTITY>"+m.group()+"</ENTITY>");
             }
         }
         System.out.println("---");

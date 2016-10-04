@@ -31,7 +31,7 @@ public class PdfToText {
         Matcher m = p.matcher(rawText);
         while(m.find()){
             String fundingText = m.group(1);
-            System.out.print(fundingText);
+            System.out.print(fundingText+"\n");
             String[] lines = fundingText.split("[\\r\\n]");
             for(String line : lines){
                 if(!line.startsWith(" ") && !line.startsWith("PAGE START")){

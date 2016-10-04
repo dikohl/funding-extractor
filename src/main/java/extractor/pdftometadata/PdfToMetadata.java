@@ -3,37 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PdfToMetadata;
+package extractor.pdftometadata;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.grobid.core.*;
-import org.grobid.core.data.*;
-import org.grobid.core.factory.*;
-import org.grobid.core.mock.*;
-import org.grobid.core.utilities.*;
+import java.io.FileInputStream;
+import java.util.Properties;
+import org.grobid.core.data.BiblioItem;
 import org.grobid.core.engines.Engine;
+import org.grobid.core.factory.GrobidFactory;
+import org.grobid.core.mock.MockContext;
+import org.grobid.core.utilities.GrobidProperties;
 
 /**
  *
  * @author kodi
  */
 public class PdfToMetadata {
+    private static Engine engine;
+    
     public static void getMetadata(String pdfPath){
         try {
-            String pGrobidHome = "grobid/grobid-home";
-            String pGrobidProperties = "grobid/grobid-home/config/grobid.properties";
+            Properties prop = new Properties();
+            prop.load(new FileInputStream("extractor.properties"));
+            String pGrobidHome = prop.getProperty("extractor.pGrobidHome");
+            String pGrobidProperties = prop.getProperty("extractor.pGrobidProperties");
             
             MockContext.setInitialContext(pGrobidHome, pGrobidProperties);
             GrobidProperties.getInstance();
             
             System.out.println(">>>>>>>> GROBID_HOME="+GrobidProperties.get_GROBID_HOME_PATH());
             
-            Engine engine = GrobidFactory.getInstance().createEngine();
+            engine = GrobidFactory.getInstance().createEngine();
             
             // Biblio object for the result
             BiblioItem resHeader = new BiblioItem();
             String tei = engine.processHeader(pdfPath, false, resHeader);
+            System.out.print(tei);
+            
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -41,7 +46,7 @@ public class PdfToMetadata {
             try {
                 MockContext.destroyInitialContext();
             } catch (Exception ex) {
-                    ex.printStackTrace();
+                    System.out.print(ex);
             }
         }
     }
