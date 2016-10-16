@@ -31,21 +31,28 @@ public class extractor {
             paths.forEach(filePath -> {
                 if (Files.isRegularFile(filePath) && filePath.toString().endsWith(".pdf")) {
                     System.out.println(filePath.toString());
+                    //runs grobid
+                    //grobid needs to be setup and installed in the project
                     //PdfToMetadata.getMetadata(filePath.toString());
                     try {
+                        //extracts Acknowledgement, Funding and Conflict of Interest text
                         String text = PdfToText.getText(filePath.toFile());
-                        List<String> nerEntities = TextToEntities.getNerEntities(text);
+                        //runs Stanford NER over the extracted text (with the trained model)
+                        //List<String> nerEntities = TextToEntities.getNerEntities(text);
+                        //runs the regex over the extractet text
                         List<String> regexEntities = TextToEntities.getRegexEntities(text);
-                        List<String> goldenEntities = getGoldenEntities(filePath.getFileName().toString());
-                        ResultAccuracy.compareResults(goldenEntities, regexEntities, nerEntities);
-                        //TextToTrainingSet.addToTrainingData(text, entities);
+                        //compares regexEntities and nerEntities to goldenEntites from a the _golden.txt file (if it exists)
+                        //List<String> goldenEntities = getGoldenEntities(filePath.getFileName().toString());
+                        //ResultAccuracy.compareResults(goldenEntities, regexEntities, nerEntities);
+                        //creates basic tokenized text as word+"\tO" or word+"\tORGANIZATION" and saves it to trainingData.tsv
+                        TextToTrainingSet.addToTrainingData(text, regexEntities);
                     } catch (IOException ex) {
-                        System.out.print("FilePath: "+ex);
+                        System.out.print("[FilePath] "+ex);
                     }
                 }
             });
         } catch (IOException ex) {
-            System.out.print("Path walking: "+ex);
+            System.out.print("[Path walking] "+ex);
         }
     }
 

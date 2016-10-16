@@ -19,11 +19,14 @@ import java.util.List;
  */
 public class TextToTrainingSet {
     public static void addToTrainingData(String text, List<String> entities){
-        String[] splittedText = text.split(" ");
+        String[] splittedText = text.replace("  "," ").split(" ");
+        if(splittedText.length < 2){
+            return;
+        }
         
         List<String> splittedEntities = new ArrayList();
         entities.stream().forEach((entity) -> {
-            splittedEntities.addAll(Arrays.asList(entity.split(" ")));
+            splittedEntities.addAll(Arrays.asList(entity.substring(8,entity.length()-9).split(" ")));
         });
         try(FileWriter fw = new FileWriter("trainingData.tsv", true);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -31,22 +34,42 @@ public class TextToTrainingSet {
         {
             boolean isPrevWord = false;
             for(String word : splittedText){
-                word = word.replace(",","");
+                String wordRep = word.replace(",","");
                 if(word.length() > 2)
-                    word = word.replace(".","");
-                if(splittedEntities.contains(word)){
+                    wordRep = wordRep.replace(".","");
+                if(splittedEntities.contains(wordRep)){
                     if(!isPrevWord&&(word.equals("of")||word.equals("the")||word.equals("in")||word.equals("and")||word.equals("for"))){
                         out.println(word+"\tO");
                         isPrevWord = false;
                     }
                     else{
-                        out.println(word+"\tORGANIZATION");
-                        isPrevWord = true;
+                        if(word.endsWith(".")){
+                            out.println(word.substring(0,word.length()-1)+"\tORGANIZATION");
+                            out.println(".\tO");
+                        }
+                        else if(word.endsWith(",")){
+                            out.println(word.substring(0,word.length()-1)+"\tORGANIZATION");
+                            out.println(",\tO");
+                        }
+                        else{
+                            out.println(word+"\tORGANIZATION");
+                            isPrevWord = true;
+                        }
                     }
                 }
                 else{
-                    out.println(word+"\tO");
-                    isPrevWord = false;
+                    if(word.endsWith(".")){
+                            out.println(word.substring(0,word.length()-1)+"\tO");
+                            out.println(".\tO");
+                    }
+                    else if(word.endsWith(",")){
+                        out.println(word.substring(0,word.length()-1)+"\tO");
+                        out.println(",\tO");
+                    }
+                    else{
+                        out.println(word+"\tO");
+                        isPrevWord = false;
+                    }
                 }
             }
         } catch (IOException ex) {
