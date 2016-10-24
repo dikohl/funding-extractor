@@ -41,6 +41,7 @@ public class PdfToText {
             PDFTextStripper stripper = new PDFTextStripper();
             
             stripper.setPageStart("PAGE START");
+            stripper.setPageEnd("PAGE END");
             //gets the text form the doc and replaces unknown signs with \n
             String rawText = stripper.getText(doc).replaceAll("[\\p{Cc}\\p{Cf}\\p{Co}\\p{Cn}]","\n");
             doc.close();
@@ -75,7 +76,7 @@ public class PdfToText {
             String[] lines = fundingText.split("[\\r\\n]");
             for(String line : lines){
                 //remove the header lines
-                if(!line.startsWith("PAGE START")){
+                if(!line.contains("PAGE START") && !line.contains("PAGE END")){
                     if(line.endsWith(" ")|| line.endsWith("-")){
                         cleanFundingText = cleanFundingText + line;
                     }

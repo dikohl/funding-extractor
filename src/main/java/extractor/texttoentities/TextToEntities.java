@@ -37,9 +37,9 @@ public class TextToEntities {
     public static List<String> getNerEntities(String input){
         List<String> entities = new ArrayList<>();
         //standard english classifier
-        String serializedClassifier = "classifiers/english.all.3class.distsim.crf.ser.gz";
+        //String serializedClassifier = "classifiers/english.all.3class.distsim.crf.ser.gz";
         //trained model for funding entities
-        //String serializedClassifier = "classifiers/ner-model.ser.gz";
+        String serializedClassifier = "classifiers/ner-model10.ser.gz";
         AbstractSequenceClassifier<CoreLabel> classifier;
         try {
             classifier = CRFClassifier.getClassifier(serializedClassifier);

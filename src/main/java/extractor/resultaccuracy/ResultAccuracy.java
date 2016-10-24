@@ -41,7 +41,7 @@ public class ResultAccuracy {
             String noTags = entity.substring(entity.indexOf(">")+1, entity.substring(1, entity.length()).indexOf("<")+1);
             for(String goldenEntity : goldenRegex){
                 String goldenNoTags = goldenEntity.substring(goldenEntity.indexOf(">")+1, goldenEntity.substring(1, goldenEntity.length()).indexOf("<")+1);
-                if(goldenNoTags.contains(noTags)||noTags.contains(goldenNoTags)){
+                if(noTags.contains(goldenNoTags)){
                     closeRegexMatch++;
                     break;
                 }
@@ -54,7 +54,7 @@ public class ResultAccuracy {
             String noTags = entity.substring(entity.indexOf(">")+1, entity.substring(1, entity.length()).indexOf("<")+1);
             for(String goldenEntity : goldenNer){
                 String goldenNoTags = goldenEntity.substring(goldenEntity.indexOf(">")+1, goldenEntity.substring(1, goldenEntity.length()).indexOf("<")+1);
-                if((goldenNoTags.contains(noTags)||noTags.contains(goldenNoTags))&& entity.substring(0, 3).equals(goldenEntity.substring(0,3))){
+                if(noTags.contains(goldenNoTags) && entity.substring(0, 3).equals(goldenEntity.substring(0,3))){
                     closeNerMatch++;
                     break;
                 }

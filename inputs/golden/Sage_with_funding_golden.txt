@@ -1,0 +1,6 @@
+<ORGANIZATION>Research Program of Region-University</ORGANIZATION>
+<ORGANIZATION>Governo Clinico—Regione Emilia-Romagna</ORGANIZATION>
+<ORGANIZATION>University Hospital St. Orsola-Malpighi Polyclinic</ORGANIZATION>
+<PERSON>Guido Sarchielli</PERSON>
+<ORGANIZATION>Department of Psychology</ORGANIZATION>
+<ORGANIZATION>University of Bologna</ORGANIZATION>
