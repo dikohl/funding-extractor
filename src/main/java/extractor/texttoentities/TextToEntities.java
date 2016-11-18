@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * @author kodi
  */
 public class TextToEntities {
-    public static List<String> getRegexEntities(String text){
+    public List<String> getRegexEntities(String text){
         List<String> entities = new ArrayList<>();
         Pattern p = Pattern.compile("([A-Z](\\.|[a-z\\/]+)[\\s\\-\\—]?(of\\s|and\\s|St\\.\\s|for\\s|in\\sthe\\s)?){2,}(\\s?\\([^\\)]+\\))?");
         Matcher m = p.matcher(text.replace("  ", " "));
@@ -34,7 +34,7 @@ public class TextToEntities {
         return entities;
     }
     
-    public static List<String> getNerEntities(String input){
+    public List<String> getNerEntities(String input){
         List<String> entities = new ArrayList<>();
         //standard english classifier
         //String serializedClassifier = "classifiers/english.all.3class.distsim.crf.ser.gz";

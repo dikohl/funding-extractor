@@ -24,7 +24,7 @@ import com.snowtide.pdf.OutputTarget;
  */
 public class PdfToText {
     
-    public static String getText(File file) throws IOException {
+    public String getText(File file) throws IOException {
         String rawText = getPdfBoxRaw(file);
         String cleanText = getCleanText(rawText);
         if(cleanText.length() < 5){
@@ -35,7 +35,7 @@ public class PdfToText {
         
     }
     
-    private static String getPdfBoxRaw(File file){
+    private String getPdfBoxRaw(File file){
         try {
             PDDocument doc = PDDocument.load(file);
             PDFTextStripper stripper = new PDFTextStripper();
@@ -53,7 +53,7 @@ public class PdfToText {
         return "";
     }
     
-    private static String getPdfXStreamRaw(File file){
+    private String getPdfXStreamRaw(File file){
         try {
             Document doc = PDF.open(file);
             StringBuilder text = new StringBuilder(1024);
@@ -66,7 +66,7 @@ public class PdfToText {
         return "";
     }
 
-    private static String getCleanText(String rawText) {
+    private String getCleanText(String rawText) {
         String cleanFundingText = "";
         Pattern p = Pattern.compile("[\\.\\n\\r]?((?:Funding(s)?(/Support)?(\\ssources)?|Acknowledg(e)?ment(s)?(:)?|[cC]onflict.+\\s[iI]nterests|ACKNOWLEDG(E)?MENTS(S)?)(?:[\\r\\n]+.*?)+\\.)(?:[\\r\\n]*[A-Za-z]*(\\s[A-Za-z]*)?[\\r\\n]+)");
         Matcher m = p.matcher(rawText);

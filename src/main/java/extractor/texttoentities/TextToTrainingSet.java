@@ -18,7 +18,7 @@ import java.util.List;
  * @author kodi
  */
 public class TextToTrainingSet {
-    public static void addToTrainingData(String text, List<String> entities){
+    public void addToTrainingData(String text, List<String> entities){
         String[] splittedText = text.replace("  "," ").split(" ");
         if(splittedText.length < 2){
             return;

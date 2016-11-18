@@ -13,7 +13,7 @@ import java.util.List;
  * @author kodi
  */
 public class ResultAccuracy {
-    public static void compareResults(List<String> goldenNer, List<String> regex, List<String> ner){
+    public void compareResults(List<String> goldenNer, List<String> regex, List<String> ner){
         List<String> goldenRegex = new ArrayList<>();
         System.out.println("Golden standard:");
         //build the Regex golden standard form the file (because regex doesn't differentiate entities)
@@ -34,7 +34,8 @@ public class ResultAccuracy {
         double nerAccuracy = (double)ner.size()/(double)goldenNer.size();
         System.out.println("NER: "+nerAccuracy*100+"%");
     }
-    private static void closeMatches(List<String> regex,List<String> ner,List<String> goldenNer,List<String> goldenRegex){
+    
+    private void closeMatches(List<String> regex,List<String> ner,List<String> goldenNer,List<String> goldenRegex){
         System.out.println("Matches containing golden standard:");
         double closeRegexMatch = 0.0;
         for(String entity : regex){
