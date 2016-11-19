@@ -38,7 +38,7 @@ public class extractor {
                         //extracts Acknowledgement, Funding and Conflict of Interest text
                         String text = new PdfToText().getText(filePath.toFile());
                         
-                        TextToEntities TtE = new TextToEntities();
+                        TextToEntities TtE = new TextToEntities(filePath.getFileName().toString().replace(".pdf",""));
                         //runs Stanford NER over the extracted text (with the trained model)
                         List<String> nerEntities = TtE.getNerEntities(text);
                         //runs the regex over the extractet text

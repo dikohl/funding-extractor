@@ -16,3 +16,7 @@ grobid.log.2016-10-05
 grobid.log.2016-10-07
 
 grobid_dependencies.txt
+
+output/
+
+input/
