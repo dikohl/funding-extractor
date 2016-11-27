@@ -38,7 +38,7 @@ public class TextToEntities {
     }
     public List<String> getRegexEntities(String text){
         List<String> entities = new ArrayList<>();
-        Pattern p = Pattern.compile("([A-Z](\\.|[a-z\\/]+)[\\s\\-\\—]?(of\\s|and\\s|St\\.\\s|for\\s|in\\sthe\\s)?){2,}(\\s?\\([^\\)]+\\))?");
+        Pattern p = Pattern.compile("([A-Z\\d](\\.|[\\w\\d\\/]+)[\\s\\-\\—\\–]?(of\\s|and\\s|St\\.\\s|for\\s|in\\sthe\\s)?){2,}(\\s?\\([^\\)]+\\))?");
         Matcher m = p.matcher(text.replace("  ", " "));
         System.out.println("Regular Expression Results:");
         HashMap<String, String> mapping = new HashMap<>();

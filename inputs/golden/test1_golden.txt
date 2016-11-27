@@ -1,8 +1,0 @@
-<ORGANIZATION>Defense Threat Reduction Agency-Joint Science and Technology Office for Chemical and Biological Defense (Grant no. HDTRA1-10-1-0028)</ORGANIZATION>
-<ORGANIZATION>NIH Grants 5P20RR021949-04 and 8P20GM103444-04</ORGANIZATION>
-<PERSON>Ms. Megan Grobman<PERSON>
-<PERSON>Dr. Lara Gamble<PERSON>
-<PERSON>Dr. David Castner<PERSON>
-<ORGANIZATION>NESAC/BIO</ORGANIZATION>
-<ORGANIZATION>University of Washington</ORGANIZATION> 
-<ORGANIZATION>NIH NIBIB (grant # EB002027)</ORGANIZATION>

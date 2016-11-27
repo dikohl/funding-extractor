@@ -1,5 +1,5 @@
-<ORGANIZATION>Research Program of Region-University</ORGANIZATION>
-<ORGANIZATION>Governo Clinico—Regione Emilia-Romagna</ORGANIZATION>
+<ORGANIZATION>Research Program of Region-University 2010—2012</ORGANIZATION>
+<ORGANIZATION>Area 2—Ricerca per il Governo Clinico—Regione Emilia-Romagna</ORGANIZATION>
 <ORGANIZATION>University Hospital St. Orsola-Malpighi Polyclinic</ORGANIZATION>
 <PERSON>Guido Sarchielli</PERSON>
 <ORGANIZATION>Department of Psychology</ORGANIZATION>

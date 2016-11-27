@@ -1,5 +1,0 @@
-<PERSON>Ms L Garcı́a</PERSON>
-<PERSON>Mr R Martı́nez</PERSON>
-<ORGANIZATION>General Surgery Department</ORGANIZATION>
-<ORGANIZATION>Vall d’Hebron Hospital</ORGANIZATION>
-<ORGANIZATION>Spanish Ministry of Health Grant FIS 97/ 0932</ORGANIZATION>
